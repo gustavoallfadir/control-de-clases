@@ -1,0 +1,78 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Inicio
+{% endblock %}
+
+{% block content %}
+    
+{% if user.is_authenticated %}
+
+    {% if user.maestro %}
+    <div class="titulo">
+        <h2>¡Bienvenido {{user.maestro.nombres}}!</h2>
+    </div>
+        
+        <div class="profile">
+            <h3>Tu perfil de maestro</h3>
+            <div class="contenido">
+                <p>{{user.maestro.nombres}} {{user.maestro.apellidos}}</p>
+                <p>email: {{user.maestro.email}}</p>
+                <p>Cumpleaños: {{user.maestro.nacimiento}}</p>
+                <p>Tel: {{user.maestro.telefono}}</p>
+                <h4>Resumen de clases</h4>
+                <p>Clases este mes: {{user.maestro.clases_este_mes}}</p>
+                <p>Total de clases: {{user.maestro.total_clases}}</p>
+                <p>Pendientes por aprobar: {{user.maestro.total_pendientes}}</p>
+            </div>
+            <div class="imagen-perfil">
+                {% if user.maestro.foto %}
+                    <img src="{{user.maestro.foto.url}}" alt="">
+                {% else %}
+                    {% load static %}
+                    <img src="{% static 'media/default-avatar.png' %}" alt="">
+                {% endif %}
+            </div>
+
+            <div class="buttons">
+                <a href="{% url 'update maestro' user.maestro.pk %}" class="button">Editar perfil</a>
+                <a class="button" href="{% url 'nueva clase' %}">Anotar clase</a>
+            </div>
+        </div>
+
+        {% if user.maestro.clases_pendientes %}
+        <div class="profile">
+            <h3>Clases pendientes</h3>
+            <div class="clases">
+                <ul>
+                    {% for clase in user.maestro.clases_pendientes %}
+                        <li>{{clase.descripcion_corta|capfirst}}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+        {% endif %}
+
+        {% if user.maestro.ultimas_clases %}
+        <div class="profile">
+            <h3>Últimas clases</h3>
+            <div class="clases">
+                <ul>
+                    {% for clase in user.maestro.ultimas_clases %}
+                        <li>{{clase.descripcion_corta|capfirst}}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+        {% endif %}
+
+
+    {%endif %}
+
+{% else %}
+    <h2>Inicio</h2>
+    <p>Inicia sesión o regístrate para obtener acceso a las funciones de la aplicación.</p>
+{% endif %}
+
+
+{% endblock %}

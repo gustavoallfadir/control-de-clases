@@ -1,0 +1,1 @@
+default_app_config = 'registro_clases.apps.RegistroClasesConfig'

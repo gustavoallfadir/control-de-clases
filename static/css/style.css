@@ -1,0 +1,276 @@
+:root{
+    --dark-bg-color:rgb(6, 0, 65);
+}
+
+body {
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    background-image: url("/static/media/bg.png");
+    background-attachment: fixed;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+
+h1 {
+    font-size: 2.5em;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+h2 {
+    font-size: 2em;
+    font-weight: bold;
+    margin-top: 15px;
+    margin-bottom: 20px;
+}  
+h3 {
+    font-size: 1.6em;
+    font-weight: bold;
+    margin-top: 15px;
+    margin-bottom: 20px;
+}
+h4 {
+    font-size: 1.2em;
+    font-weight: bold;
+    margin-top: 15px;
+    margin-bottom: 12px;
+}
+
+header {
+    background-color: var(--dark-bg-color);
+    color: white;
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.753);
+    margin-bottom: 20px;
+    padding: 15px;
+    width: 100%;
+}
+
+.titulo{
+    margin-left: 5%;
+    margin-top: 2%;
+}
+
+.user {
+    color: rgb(130, 199, 255);
+    display: inline-block;
+}
+
+nav{
+    line-height: 25px;
+}
+nav li {
+    display: inline-block;
+}
+
+li a:hover, .dropdown:hover .dropbtn {
+    background-color: white;
+    color: rgb(0, 0, 71);
+}
+
+nav a {
+    color:white;
+    text-decoration: none;
+    padding: 13px;
+}
+
+nav a:hover {
+    color: rgb(0, 0, 71);
+    background-color: white;
+}
+
+li .dropdown {
+    display: inline-block;
+}
+  
+.dropdown-content {
+    display: none;
+    position: absolute;
+    top: 95px;
+    background-color: white;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+}
+
+.dropdown-content a:hover {
+    background-color: #6aa5ff;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+footer {
+    background-color: var(--dark-bg-color);
+    text-align: center;
+    color: white;
+    padding: 20px;
+    line-height: 20px;
+    margin-top: 5%;
+    width: 100%;
+}
+
+
+/*--Formularios--*/
+
+.form {
+    padding: 30px;
+    margin: 5% auto;
+    background-color: rgb(2, 37, 114);
+    color: white;
+    width: max-content;
+    max-width: 80%;
+    text-align: center;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.7);
+}
+
+.form table {
+    margin: 20px auto;
+}
+
+.form td {
+    padding: 10px;
+    text-align: justify;
+    line-height: 20px;
+    width: 60%;
+}
+
+.form th {
+    width: 30%;
+}
+
+.form li {
+    width:80%;
+}
+
+.form input {
+    margin-bottom: 10px;
+}
+
+.form #id_nacimiento {
+    height:14px;
+}
+
+/*---BOTONES---*/
+.button {
+    background-color: rgb(0, 36, 196);
+    color: white;
+    transition: all .3s;
+    border-radius: 5px;
+    padding: 10px;
+    font-size: 1.1em;
+    border: none;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
+    text-decoration: none;
+}
+.button:hover {
+    background-color: white;
+    color:rgb(0, 36, 196);
+}
+
+.button-a {
+    background-color: green;
+    color: white;
+    transition: all .3s;
+    border-radius: 5px;
+    padding: 10px;
+    font-size: 1.1em;
+    border: none;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
+    text-decoration: none;
+}
+.button-a:hover {
+    background-color: white;
+    color:green;
+}
+
+.button-x {
+    background-color: red;
+    color: white;
+    transition: all .3s;
+    border-radius: 5px;
+    padding: 10px;
+    font-size: 1.1em;
+    border: none;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
+    text-decoration: none;
+}
+.button-x:hover {
+    background-color: white;
+    color:red;
+}
+
+
+.profile {
+    background-color: rgb(0, 107, 150);
+    color:  white;
+    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.7);
+    width: 80%;
+    max-width: 800px;
+    height: max-content;
+    min-height: 200px;
+    margin: 4% auto;
+    padding: 35px;
+    display: grid;
+    grid-template-columns: 60% 40%;
+    grid-template-areas:
+    'titulo titulo'
+    'contenido foto'
+    'clases clases'
+    'botones botones';
+}
+.profile h3 {
+    margin-bottom: 15px;
+    grid-area: titulo;
+    margin-bottom: 30px;
+}
+.profile .contenido {
+    grid-area: contenido;
+}
+.profile p {
+    line-height: 24px;
+    margin-left: 10px;
+}
+.profile .imagen-perfil {
+    text-align: right;
+    grid-area: foto;
+}
+.profile img {
+    width: 250px;
+    max-width: 100%;
+}
+.profile .buttons {
+    grid-area: botones;
+    margin-top: 30px;
+}
+.profile .buttons .button, .button-a, .button-x{
+    margin-right: 20px;
+}
+.profile .clases {
+    grid-area: clases;
+    line-height: 25px;
+}
+.profile .clases li {
+    list-style-type: disc;
+    margin-left: 30px;
+}
+
+.fill {
+    text-align: center;
+}
+
+/*---PAGINACION---*/
+
+.pagination{
+    color: white;
+    text-align: center;
+    margin-top: 30px;
+}

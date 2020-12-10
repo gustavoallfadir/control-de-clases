@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Clases por aprobar
+{% endblock %}
+
+
+
+{% block content %}
+<div class="profile">
+    {% if clases %}
+    <h3>Clases por aprobar</h3>
+    {% endif %}
+    <div class="clases">
+        <ul>
+            {% for clase in clases %}
+            <li>
+                <p>{{clase|capfirst}}</p>
+                <div class="buttons" style="text-align: right;">
+                    <a href="{% url 'aprobar clase' clase.pk %}" class="button-a">Aprobar</a>
+                    <a href="{% url 'rechazar clase' clase.pk %}" class="button-x">Rechazar</a>
+                </div>
+                <br>
+            </li>
+            {% empty %}
+            <div class="fill">
+                <h3>No hay clases por aprobar</h3>
+                <p>Todo está en orden, no hay registros pendientes.</p>
+            </div>
+            {% endfor %}
+        </ul>
+    </div>                
+</div>
+
+<!-- ---PAGINACION--- -->    
+<div class="pagination">
+    <span class="step-links">
+        {% if page_obj.has_previous %}
+            <a href="?page=1">&laquo; first</a>
+            <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+        {% endif %}
+
+        <span class="current">
+            Página {{ page_obj.number }} de {{ page_obj.paginator.num_pages }}.
+        </span>
+
+        {% if page_obj.has_next %}
+            <a href="?page={{ page_obj.next_page_number }}">next</a>
+            <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+        {% endif %}
+    </span>
+</div>
+{% endblock %}

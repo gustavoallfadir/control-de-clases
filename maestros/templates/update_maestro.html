@@ -1,0 +1,20 @@
+{% extends 'form-base.html' %}
+
+{% block title %}
+Editar perfil
+{% endblock %}
+
+{% block header %}
+<h1>Editar mi perfil</h1>
+{% endblock %}
+
+{% block form %}
+<div class="form">
+    <form action="" method="POST" enctype="multipart/form-data"> {% csrf_token %}
+        <table>
+            {{form.as_table}}
+        </table>
+        <input class="button" type="submit" value="Enviar">
+    </form>
+</div>
+{% endblock %}

@@ -1,0 +1,20 @@
+{% extends 'form-base.html' %}
+
+{% block title %}
+Login
+{% endblock %}
+
+{% block header %}
+<h1>Login</h1>
+{% endblock %}
+
+{% block form %}
+<div class="form">
+    <form action="" method="POST"> {% csrf_token %}
+        <table>
+            {{form.as_table}}
+        </table>
+        <input class="button" type="submit" value="Iniciar">
+    </form>
+</div>
+{% endblock %}

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="{% static 'css/reset.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <title>{% block title %}{% endblock %}</title>
+</head>
+
+<body>
+
+<div class="wrapper">
+    <header>
+        <h1>Control de clases</h1>
+        <nav>
+            <ul>
+                <li>
+                    <a href="{% url 'home' %}">Inicio</a>
+                </li>
+                
+                {% if user.is_authenticated %}
+                <li class="dropdown">
+                    <a href="javascript:void(0)" class="dropbtn">Maestros</a>
+                    <div class="dropdown-content">
+                      <a href="">Lista de maestros</a>
+                    {% if user.is_authenticated %}
+                        <a href="{% url 'update maestro' user.maestro.pk %}">Editar mi perfil</a>
+                    {% else %}
+                    {% endif %}
+                </div>
+            </li>
+            
+            <li class="dropdown">
+                <a href="javascript:void(0)" class="dropbtn">Clases</a>
+                    <div class="dropdown-content">
+                        <a href="{% url 'lista clases' %}">Lista de clases</a>
+                      <a href="{% url 'nueva clase' %}">Registrar clase</a>
+                      {% if user.maestro.es_admin %}
+                      <a href="{% url 'clases por aprobar' %}">Clases pendientes por aprobar</a>
+                      {% endif %}
+                    </div>
+                </li>
+ 
+                <li>
+                    <a href="{% url 'logout' %}">Cerrar sesión</a>
+                </li>
+                <span class="user">Sesión iniciada: @{{request.user}}</span>
+                {% else %}
+                <li>
+                    <a href="{% url 'login' %}">Iniciar sesión</a>
+                    <a href="{% url 'nuevo usuario' %}">Registrarme</a>
+                </li>
+                {% endif %}
+            </ul>
+        </nav>
+    
+    </header>
+
+    {% block content %}
+
+    {% endblock %}
+
+    <footer>
+        <p>Aplicación creada por Gustavo Allfadir</p>
+        <p>gustavo.allfadir@yahoo.com</p>
+    </footer>
+</div>
+
+</body>
+</html>
