@@ -11,7 +11,7 @@ urlpatterns = [
     path('clases/lista/', login_required(ClaseListView.as_view()),name='lista clases'),        
     path('clases/por_aprobar/', login_required(ClasePorAprobarListView.as_view()),name='clases por aprobar'),
 
-    path('aprobar_clase/<pk>',aprobar_clase,name='aprobar clase'),
-    path('rechazar_clase/<pk>',rechazar_clase,name='rechazar clase'),
+    path('clases/aprobar/<pk>',aprobar_clase,name='aprobar clase'),
+    path('clases/rechazar/<pk>',rechazar_clase,name='rechazar clase'),
 ]
 

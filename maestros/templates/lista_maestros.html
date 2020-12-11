@@ -1,29 +1,29 @@
 {% extends 'base.html' %}
 
 {% block title %}
-Listado de clases
+Listado de maestros
 {% endblock %}
 
 
 
 {% block content %}
 <div class="profile">
-    <h3>Listado de clases</h3>
+    <h3>Listado de maestros</h3>
 
     <div class="clases">
         <table>
-            <th>Maestro</th>
-            <th>Asignatura</th>
-            <th>Fecha</th>
-            <th>Hora</th>
-            <th>Estatus</th>
-            {% for clase in clases %}
+            <th>Nombre</th>
+            <th>Horas contrato</th>
+            <th>Horas este mes</th>
+            <th>Clases este mes</th>
+            <th></th>
+            {% for maestro in maestros %}
             <tr class="row">
-                <td>{{clase.maestro}}</td>
-                <td>{{clase.asignatura}}</td>
-                <td>{{clase.fecha}}</td>
-                <td>{{clase.hora}}</td>
-                <td>{{clase.estatus}}</td>
+                <td>{{maestro.nombres}} {{maestro.apellidos}}</td>
+                <td>{{maestro.horas_contrato}}</td>
+                <td>{{maestro.horas_este_mes}}</td>
+                <td>{{maestro.clases_este_mes}}</td>
+                <td><a class="sml-button" href="{% url 'detalle maestro' maestro.pk %}">Detalles</a></td>
             </tr>
             {% endfor %}
         </table>

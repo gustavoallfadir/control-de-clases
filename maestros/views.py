@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect, HttpResponseRedirect
 from django.core.exceptions import PermissionDenied
 from django.urls import reverse_lazy
-from django.views.generic import ListView, CreateView, UpdateView
+from django.views.generic import ListView, CreateView, UpdateView, DetailView
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.decorators import login_required
@@ -79,3 +79,21 @@ class MaestroUpdateView(UpdateView):
 
         else:
             raise PermissionDenied()
+
+
+class MaestroListView(ListView):
+    "Clase para la vista de listado de maestros"
+
+    model = Maestro
+    queryset = Maestro.objects.filter(es_admin=False)
+    context_object_name = 'maestros'
+    template_name = 'lista_maestros.html'
+    paginate_by = 30
+
+
+class MaestroDetailView(DetailView):
+    "Detalles de maestro"
+
+    model = Maestro
+    context_object_name = 'maestro'
+    template_name = 'detalle_maestro.html'

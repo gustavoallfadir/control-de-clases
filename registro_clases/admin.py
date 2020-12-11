@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import Asignatura, Clase
+from .models import Asignatura, TipoClase, Clase
 # Register your models here.
 
 class ClaseAdmin(admin.ModelAdmin):
@@ -27,3 +27,5 @@ class ClaseAdmin(admin.ModelAdmin):
 admin.site.register(Clase,ClaseAdmin)
 
 admin.site.register(Asignatura)
+
+admin.site.register(TipoClase)

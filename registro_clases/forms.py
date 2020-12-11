@@ -8,10 +8,13 @@ class ClaseCreateForm(forms.ModelForm):
         model = Clase
         fields = [
             'asignatura',
+            'tipo',
             'fecha',
             'hora',
+            'duracion',
         ]
         widgets = {
             'fecha':forms.DateInput(attrs={'type':'date'}),
             'hora':forms.TimeInput(attrs={'type':'time'}),
+            'duracion':forms.NumberInput(attrs={'placeholder':'horas'})
         }

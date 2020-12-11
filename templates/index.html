@@ -10,7 +10,7 @@ Inicio
 
     {% if user.maestro %}
     <div class="titulo">
-        <h2>¡Bienvenido {{user.maestro.nombres}}!</h2>
+        <h2>¡Bienvenido, {{user.maestro.nombres}}!</h2>
     </div>
         
         <div class="profile">
@@ -24,6 +24,8 @@ Inicio
                 <p>Clases este mes: {{user.maestro.clases_este_mes}}</p>
                 <p>Total de clases: {{user.maestro.total_clases}}</p>
                 <p>Pendientes por aprobar: {{user.maestro.total_pendientes}}</p>
+                <p>Horas de contrato: {{user.maestro.horas_contrato}}</p>
+                <p>Horas este mes: {{user.maestro.horas_este_mes}}</p>
             </div>
             <div class="imagen-perfil">
                 {% if user.maestro.foto %}
@@ -36,7 +38,7 @@ Inicio
 
             <div class="buttons">
                 <a href="{% url 'update maestro' user.maestro.pk %}" class="button">Editar perfil</a>
-                <a class="button" href="{% url 'nueva clase' %}">Anotar clase</a>
+                <a class="button" href="{% url 'nueva clase' %}">Registrar clase</a>
             </div>
         </div>
 
@@ -59,7 +61,10 @@ Inicio
             <div class="clases">
                 <ul>
                     {% for clase in user.maestro.ultimas_clases %}
-                        <li>{{clase.descripcion_corta|capfirst}}</li>
+                        <li>
+                            Clase de {{clase.asignatura}}, el día {{clase.fecha}} a las {{clase.hora}} 
+                            {% if clase.fue_rechazada %}(Rechazada){%endif%}
+                        </li>
                     {% endfor %}
                 </ul>
             </div>

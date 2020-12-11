@@ -18,6 +18,17 @@ def home_view(request):
     }
     return render(request,'index.html',context=context)
 
+#VISTAS DE ERROR CUSTOM (SOLO EN PRODUCCION)
+def error_403(request,exception):
+        context = {}
+        return render(request,'error_403.html', context)
+
+def error_404(request,exception):
+        context = {}
+        return render(request,'error_404.html', context)
+
+
+#VISTAS RELACIONADAS CON LAS CLASES
 
 class ClaseCreateView(CreateView):
     model = Clase
@@ -34,6 +45,7 @@ class ClaseCreateView(CreateView):
 
 class ClaseListView(ListView):
     model = Clase
+    queryset = Clase.objects.all().order_by('-fecha','-hora')
     context_object_name = 'clases'
     template_name = 'lista_clases.html'
     paginate_by = 30
@@ -42,7 +54,7 @@ class ClaseListView(ListView):
 class ClasePorAprobarListView(ListView):
     model = Clase
     context_object_name = 'clases'
-    queryset = Clase.objects.filter(aprobada=False)
+    queryset = Clase.objects.filter(aprobada=False).filter(rechazada=False)
     template_name = 'clases_por_aprobar.html'
     paginate_by = 30
 
@@ -77,11 +89,3 @@ def rechazar_clase(request,pk):
         return HttpResponseRedirect(reverse_lazy('404'))
 
 
-#VISTAS DE ERROR CUSTOM (SOLO EN PRODUCCION)
-def error_403(request,exception):
-        context = {}
-        return render(request,'error_403.html', context)
-
-def error_404(request,exception):
-        context = {}
-        return render(request,'error_404.html', context)

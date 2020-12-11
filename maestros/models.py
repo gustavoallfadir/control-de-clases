@@ -29,31 +29,53 @@ class Maestro(models.Model):
         blank=True,
         upload_to='maestros',
     )
+    horas_contrato = models.IntegerField(default=100)
     es_admin = models.BooleanField(default=False)
 
     def clases_este_mes(self):
         ano_actual = timezone.now().year
         mes_actual = timezone.now().month
-        clases = Clase.objects.filter(
+        clases_este_mes = Clase.objects.filter(
             maestro=self.pk).filter(
                 fecha__year=ano_actual).filter(
                     fecha__month=mes_actual).count()
-        return clases
-     
+        return clases_este_mes
+
+
+    def horas_este_mes(self):
+        ano_actual = timezone.now().year
+        mes_actual = timezone.now().month
+        clases_este_mes = Clase.objects.filter(
+            maestro=self.pk).filter(
+                fecha__year=ano_actual).filter(
+                    fecha__month=mes_actual)
+        lista_duracion = clases_este_mes.values_list('duracion',flat=True)
+        horas = 0
+        for x in lista_duracion:
+            horas =+ x
+        return horas
+
     def ultimas_clases(self):
         ultimas_clases = Clase.objects.filter(maestro=self.pk).order_by('-fecha')[:10]
         return ultimas_clases
 
+
     def total_clases(self):
-        total_clases = Clase.objects.filter(maestro=self.pk).count()
+        total_clases = Clase.objects.filter(maestro=self.pk)\
+            .filter(rechazada=False).count()
         return total_clases
 
+
     def clases_pendientes(self):
-        clases_pendientes = Clase.objects.filter(maestro=self.pk).filter(aprobada=False).filter(rechazada=False)
+        clases_pendientes = Clase.objects.filter(maestro=self.pk)\
+            .filter(aprobada=False)\
+                .filter(rechazada=False)
+
         return clases_pendientes
 
+
     def total_pendientes(self):
-        total_pendientes = Clase.objects.filter(maestro=self.pk).filter(aprobada=False).count()
+        total_pendientes = Clase.objects.filter(maestro=self.pk).filter(aprobada=False).filter(rechazada=False).count()
         return total_pendientes
 
     def __str__(self):
