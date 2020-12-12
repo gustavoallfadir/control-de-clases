@@ -21,7 +21,7 @@ Perfil del maestro
             </div>
             <div class="imagen-perfil">
                 {% if maestro.foto %}
-                    <img src="{{.maestro.foto.url}}" alt="">
+                    <img src="{{maestro.foto.url}}" alt="">
                 {% else %}
                     {% load static %}
                     <img src="{% static 'media/default-avatar.png' %}" alt="">

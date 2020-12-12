@@ -9,20 +9,24 @@ Listado de clases
 {% block content %}
 <div class="profile">
     <h3>Listado de clases</h3>
-
+    {% load humanize %}
     <div class="clases">
         <table>
             <th>Maestro</th>
+            <th>Tipo</th>
             <th>Asignatura</th>
             <th>Fecha</th>
             <th>Hora</th>
+            <th>Duración</th>
             <th>Estatus</th>
             {% for clase in clases %}
             <tr class="row">
                 <td>{{clase.maestro}}</td>
+                <td>{{clase.tipo}}</td>
                 <td>{{clase.asignatura}}</td>
-                <td>{{clase.fecha}}</td>
+                <td>{{clase.fecha|naturalday}}</td>
                 <td>{{clase.hora}}</td>
+                <td>{{clase.duracion}} hr</td>
                 <td>{{clase.estatus}}</td>
             </tr>
             {% endfor %}

@@ -45,14 +45,14 @@ class Maestro(models.Model):
     def horas_este_mes(self):
         ano_actual = timezone.now().year
         mes_actual = timezone.now().month
-        clases_este_mes = Clase.objects.filter(
-            maestro=self.pk).filter(
-                fecha__year=ano_actual).filter(
-                    fecha__month=mes_actual)
-        lista_duracion = clases_este_mes.values_list('duracion',flat=True)
+        clases_este_mes = Clase.objects.all().filter(maestro=self.pk)\
+            .filter(aprobada=True)\
+                .filter(fecha__year=ano_actual)\
+                    .filter(fecha__month=mes_actual)\
+                        .values_list('duracion', flat=True)
         horas = 0
-        for x in lista_duracion:
-            horas =+ x
+        for x in clases_este_mes:
+           horas = horas+x
         return horas
 
     def ultimas_clases(self):

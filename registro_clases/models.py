@@ -49,8 +49,8 @@ class Clase(models.Model):
     hora = models.TimeField()
     duracion = models.DecimalField(
         default=1,
-        max_digits=4,
-        decimal_places=2,
+        max_digits=3,
+        decimal_places=1,
         verbose_name='duración de la clase en horas',
     )
     aprobada = models.BooleanField(default=False, verbose_name='aprobada para pago')
